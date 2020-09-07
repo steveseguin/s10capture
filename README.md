@@ -8,6 +8,8 @@ For advanced Stage TEN settings, such as increased audio fidelity and directions
 
 For free closed-captioning using ML-based speech-to-text, see <a href="https://caption.ninja">Caption.Ninja</a>. It's compatible with S10 and OBS.
 
+![image](https://user-images.githubusercontent.com/2575698/92375560-441eff00-f0cf-11ea-8323-71186fc7c585.png)
+
 ## Why ?
 OBS on macOS currently doesn't support its Browser Source plugin all that well, so this tool is a viable alternative. It lets you cleanly screen-grab just a video stream without the need of the Browser Source plugin. It also makes it easy to select the output audio playback device, such as a Virtual Audio device: ie) https://rogueamoeba.com/loopback/ (macOS & non-free, but excellent) and https://existential.audio/blackhole/ (macOS & free)
 
@@ -84,7 +86,7 @@ sudo -E npm run build
 
 ```
 
-![image](https://user-images.githubusercontent.com/2575698/92375560-441eff00-f0cf-11ea-8323-71186fc7c585.png)
+
 
 ![image](https://user-images.githubusercontent.com/2575698/92375617-5bf68300-f0cf-11ea-9041-3202c90144cd.png)
 
