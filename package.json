@@ -1,0 +1,106 @@
+{
+  "name": "S10.Watch.Capture.App",
+  "version": "1.0.0",
+  "description": "Simple tool to allow for playing frameless videos for screen capture",
+  "author": "Steve Seguin",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "run-os",
+    "build:win32": "electron-builder --win",
+    "build:darwin": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "clean": "rimraf ./dist",
+    "release": "electron-builder --publish always"
+  },
+  "build": {
+    "appId": "S10.Watch",
+    "productName": "capture",
+    "files": [
+      "**/*",
+      "build/Release/*",
+      "assets/icons/*.*",
+      "assets/icons/mac/*.*",
+      "assets/icons/png/*.*",
+      "assets/icons/win/*.*"
+    ],
+    "mac": {
+      "category": "public.build.automation",
+      "icon": "assets/icons/mac/icon.ico",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "hardenedRuntime": true,
+      "entitlements": "./build/entitlements.mac.inherit.plist"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "artifactName": "s10watch-${version}.${ext}"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable"
+        }
+      ],
+      "icon": "assets/icons/win/icon.ico"
+    },
+    "linux": {
+      "category": "public.build.automation",
+      "icon": "assets/icons/png/256x256.png",
+      "target": "AppImage"
+    },
+    "nsis": {
+      "runAfterFinish": true,
+      "installerIcon": "assets/icons/win/icon.ico",
+      "artifactName": "s10watch-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "capture.exe"
+    },
+    "appx": {
+      "applicationId": "s10watch",
+      "backgroundColor": "#464646",
+      "identityName": "s10watch",
+      "publisherDisplayName": "Steve Seguin",
+      "artifactName": "s10watch-${version}.${ext}"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "releaseType": "release"
+      }
+    ],
+    "afterSign": "./afterSign.js"
+  },
+  "devDependencies": {
+    "electron": "^9.2.1",
+    "electron-builder": "^22.8.0",
+    "electron-notarize": "^1.0.0",
+    "rimraf": "^2.6.3",
+    "run-script-os-fix": "^1.0.4"
+  },
+  "dependencies": {
+    "electron-context-menu": "^2.3.0",
+    "electron-is-dev": "^1.0.1",
+    "yargs": "^15.4.1"
+  }
+}
