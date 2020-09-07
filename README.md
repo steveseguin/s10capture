@@ -4,7 +4,7 @@ This free Windows/macOS app is designed to help make "Screen Capturing" of live 
 
 <a href="https://github.com/steveseguin/s10capture/releases/">Downloads for Mac and Windows Here</a>
 
-For advanced Stage TEN settings, such as increased audio fidelity and directions on how to capture directly into Windows OBS without this capture tool, see <a href="https://docs.google.com/document/d/e/2PACX-1vS3ol8Tpnu4NrqRrGjzzmcOXxocsQ7pWj3Jrb1x_essbmcC5mxRp1QFCY1LUCoVglIgF0tb2UykbFTO/pub">this guide</a>.
+For advanced Stage TEN settings, such as increased audio fidelity and directions on how to capture directly into Windows OBS without this capture tool, <a href="https://docs.google.com/document/d/e/2PACX-1vS3ol8Tpnu4NrqRrGjzzmcOXxocsQ7pWj3Jrb1x_essbmcC5mxRp1QFCY1LUCoVglIgF0tb2UykbFTO/pub">see this guide</a>.
 
 For free closed-captioning using ML-based speech-to-text, see <a href="https://caption.ninja">Caption.Ninja</a>. It's compatible with S10 and OBS.
 
