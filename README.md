@@ -6,7 +6,7 @@ This free Windows/macOS app is designed to help make "Screen Capturing" of live 
 
 For advanced Stage TEN settings, such as increased audio fidelity and directions on how to capture directly into Windows OBS without this capture tool, <a href="https://docs.google.com/document/d/e/2PACX-1vS3ol8Tpnu4NrqRrGjzzmcOXxocsQ7pWj3Jrb1x_essbmcC5mxRp1QFCY1LUCoVglIgF0tb2UykbFTO/pub">see this guide</a>.
 
-For free closed-captioning using ML-based speech-to-text, see <a href="https://caption.ninja">Caption.Ninja</a>. It's compatible with S10 and OBS.
+For free closed-captioning using ML-based speech-to-text, see <a href="https://caption.ninja">Caption.Ninja</a>. It's compatible with S10 and OBS (and also made by Steve!).
 
 ![image](https://user-images.githubusercontent.com/2575698/92375560-441eff00-f0cf-11ea-8323-71186fc7c585.png)
 
