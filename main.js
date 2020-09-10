@@ -62,7 +62,7 @@ function createWindow (URL=url) {
       preload: path.join(__dirname, 'preload.js'),
 	  zoomFactor: 1.0 / factor
     },
-	title: "OBSN "+(counter.toString())
+	title: "S10Cap "+(counter.toString())
   })
   
   
