@@ -90,4 +90,4 @@ sudo -E npm run build
 
 ![image](https://user-images.githubusercontent.com/2575698/92375617-5bf68300-f0cf-11ea-9041-3202c90144cd.png)
 
-#### ~ Guide and app written by Steve Seguin
+#### ~ Guide and app written by Steve Seguin. All rights reserved.
