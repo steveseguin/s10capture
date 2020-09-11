@@ -25,11 +25,11 @@ The default frameless resolution of the capture window is 1280x720. The app auto
 The optional Command Line arguments can be seen as examples below, along with their default values.
 
 ```
-capture.exe --width 1280 --height 720 --url https://s10.watch/electron
+capture.exe --width 1280 --height 720 --url https://s10.watch/home
 ```
 or for example
 ```
-./capture -w 1280 -h 720 -u https://s10.watch/electron
+./capture -w 1280 -h 720 -u https://s10.watch/home
 ```
 ### Audio Output 
 
