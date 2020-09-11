@@ -4,7 +4,7 @@ This free Windows/macOS app is designed to help make "Screen Capturing" of live 
 
 <a href="https://github.com/steveseguin/s10capture/releases/">Downloads for Mac and Windows Here</a>
 
-For a guide on using this app to connect Stage TEN into Zoom or Google Meet, <a href="https://docs.google.com/document/d/e/2PACX-1vREaoljeoovfZn0COYaHfezysxKQ80vLBL-Rgc6PWUGcodLO4Q91JEAfpsJgI1qcoByE8bMYcI6tCz_/pub">see this Guide Here</a>
+For a guide on using this app to stream Stage TEN into Zoom or Google Meet, <a href="https://docs.google.com/document/d/e/2PACX-1vREaoljeoovfZn0COYaHfezysxKQ80vLBL-Rgc6PWUGcodLO4Q91JEAfpsJgI1qcoByE8bMYcI6tCz_/pub">see this Guide Here</a>
 
 For advanced Stage TEN settings, such as increased audio fidelity and directions on how to capture directly into Windows OBS without this capture tool, <a href="https://docs.google.com/document/d/e/2PACX-1vS3ol8Tpnu4NrqRrGjzzmcOXxocsQ7pWj3Jrb1x_essbmcC5mxRp1QFCY1LUCoVglIgF0tb2UykbFTO/pub">see this guide</a>.
 
