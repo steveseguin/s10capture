@@ -11,7 +11,7 @@ var { argv } = require("yargs")
   .scriptName("area")
   .usage("Usage: $0 -w num -h num -w string")
   .example(
-    "$0 -w 1280 -h 720 -u https://s10.watch/xxxx",
+    "$0 -w 1280 -h 720 -u https://s10.watch/xxxx-xxx-xxxx-xxxx",
     "Loads the stream with ID xxxx into a window sized 1280x720"
   )
   .option("w", {
@@ -35,7 +35,7 @@ var { argv } = require("yargs")
   .describe("help", "Show help.") // Override --help usage message.
   .default("h", 720)
   .default("w", 1280)
-  .default("u", "https://s10.watch/electron")
+  .default("u", "https://s10.watch/home")
   
 const { width, height, url } = argv;
 
@@ -116,7 +116,7 @@ contextMenu({
 				// Only show it when right-clicking text
 				visible: true,
 				click: () => {				
-					browserWindow.loadURL(`https://s10.watch/electron`);
+					browserWindow.loadURL(`https://s10.watch/home`);
 				}
 			},
 			{
@@ -132,7 +132,7 @@ contextMenu({
 				// Only show it when right-clicking text
 				visible: true,
 				click: () => {
-					createWindow("https://s10.watch/electron");
+					createWindow("https://s10.watch/home");
 				}
 			},
 			{
