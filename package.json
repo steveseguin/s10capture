@@ -1,6 +1,6 @@
 {
   "name": "S10.Watch.Capture.App",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple tool to allow for playing frameless videos for screen capture",
   "author": "Steve Seguin",
   "main": "main.js",
@@ -15,7 +15,7 @@
   },
   "build": {
     "appId": "S10.Watch",
-    "productName": "capture",
+    "productName": "Capture",
     "files": [
       "**/*",
       "build/Release/*",
@@ -37,12 +37,12 @@
     "dmg": {
       "contents": [
         {
-          "x": 0,
-          "y": 0
+          "x": 110,
+          "y": 150
         },
         {
-          "x": 0,
-          "y": 0,
+          "x": 440,
+          "y": 150,
           "type": "link",
           "path": "/Applications"
         }
@@ -92,7 +92,7 @@
     "afterSign": "./afterSign.js"
   },
   "devDependencies": {
-    "electron": "^9.2.1",
+    "electron": "^10.1.1",
     "electron-builder": "^22.8.0",
     "electron-notarize": "^1.0.0",
     "rimraf": "^2.6.3",

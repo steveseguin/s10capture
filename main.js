@@ -1,12 +1,14 @@
 // Modules to control application life and create native browser window
 const electron = require('electron')
-const {app, BrowserWindow, ipcMain, screen, shell} = require('electron')
-const path = require('path')
 const process = require('process')
 
+process.on('uncaughtException', function (error) {
+    error.log(error);
+});
+
+const {app, BrowserWindow, ipcMain, screen, shell} = require('electron')
+const path = require('path')
 const contextMenu = require('electron-context-menu');
-
-
 var { argv } = require("yargs")
   .scriptName("area")
   .usage("Usage: $0 -w num -h num -w string")
@@ -32,41 +34,61 @@ var { argv } = require("yargs")
     type: "string",
     nargs: 1,
   })
+  .option("t", {
+    alias: "title",
+    describe: "The default Title for the app Window",
+    type: "string",
+    nargs: 1,
+  })
+  .option("p", {
+    alias: "pin",
+    describe: "Toggle always on top",
+    type: "boolean"
+  })
   .describe("help", "Show help.") // Override --help usage message.
   .default("h", 720)
   .default("w", 1280)
   .default("u", "https://s10.watch/home")
+  .default("t", null)
+  .default("p", process.platform == 'darwin')
   
-const { width, height, url } = argv;
+const { width, height, url, title, pin } = argv;
 
 if (!(url.startsWith("http"))){
 	url = "https://"+url;
-
 }
 var counter=0;
 
+function createWindow(URL=url) {
+ 
+	let currentTitle = "S10Cap";
+	if (title==null){
+		counter+=1;
+		currentTitle = "S10Cap "+(counter.toString());
+	} else if (counter==0){
+		counter+=1;
+		currentTitle = title;
+	} else {
+		counter+=1;
+		currentTitle = title + " " +(counter.toString());
+	}
 
-function createWindow (URL=url) {
-  counter+=1;
-  
-  let factor = screen.getPrimaryDisplay().scaleFactor;
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: width / factor,
-    height: height / factor,
-	frame: false,
-	backgroundColor: '#141926',
-	fullscreenable: true,
-	titleBarStyle: 'customButtonsOnHover',
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-	  zoomFactor: 1.0 / factor
-    },
-	title: "S10Cap "+(counter.toString())
-  })
-  
-  
-  
+	let factor = screen.getPrimaryDisplay().scaleFactor;
+	// Create the browser window.
+	const mainWindow = new BrowserWindow({
+		width: width / factor,
+		height: height / factor,
+		frame: false,
+		backgroundColor: '#141926',
+		fullscreenable: true,
+		titleBarStyle: 'customButtonsOnHover',
+		webPreferences: {
+			preload: path.join(__dirname, 'preload.js')
+			//, zoomFactor: 1.0 / factor
+		},
+		title: currentTitle
+	});
+	
 	mainWindow.on('close', function(e) { 
         e.preventDefault();
         mainWindow.destroy();
@@ -81,12 +103,18 @@ function createWindow (URL=url) {
 		app.quit();
 	});
 
-// "floating" + 1 is higher than all regular windows, but still behind things
-// like spotlight or the screen saver
-   mainWindow.setAlwaysOnTop(true, "floating", 1);
-// allows the window to show over a fullscreen window
-   mainWindow.setVisibleOnAllWorkspaces(true);
-
+	if (pin == true) {
+		// "floating" + 1 is higher than all regular windows, but still behind things
+		// like spotlight or the screen saver
+		mainWindow.setAlwaysOnTop(true, "floating", 1);
+		// allows the window to show over a fullscreen window
+   		mainWindow.setVisibleOnAllWorkspaces(true);
+	} else {
+		mainWindow.setAlwaysOnTop(false);
+		// allows the window to show over a fullscreen window
+		mainWindow.setVisibleOnAllWorkspaces(false);
+	}
+	
   	try { // MacOS
 		app.dock.hide();
   	} catch (e){
@@ -132,7 +160,69 @@ contextMenu({
 				// Only show it when right-clicking text
 				visible: true,
 				click: () => {
-					createWindow("https://s10.watch/home");
+					createWindow("https://obs.ninja/electron");
+				}
+			},
+			{
+				label: 'Resize window',
+				// Only show it when right-clicking text
+				visible: true,
+				type: 'submenu',
+				submenu: [
+					{
+						label: 'Fullscreen',
+						// Only show if not already full-screen
+						visible: !browserWindow.isMaximized(),
+						click: () => {
+							browserWindow.isMaximized() ? browserWindow.unmaximize() : browserWindow.maximize();
+						}
+					},
+					{
+						label: '1920x1080',
+						// Only show it when right-clicking text
+						visible: true,
+						click: () => {
+							if (browserWindow.isMaximized()){browserWindow.unmaximize();}
+							let factor = screen.getPrimaryDisplay().scaleFactor;
+							browserWindow.setSize(1920/factor, 1080/factor);
+						}
+					},
+					{
+						label: '1280x720',
+						// Only show it when right-clicking text
+						visible: true,
+						click: () => {
+							if (browserWindow.isMaximized()){browserWindow.unmaximize();}
+							let factor = screen.getPrimaryDisplay().scaleFactor;
+							browserWindow.setSize(1280/factor, 720/factor);
+						}
+					},
+					{
+						label: '640x360',
+						// Only show it when right-clicking text
+						visible: true,
+						click: () => {
+							if (browserWindow.isMaximized()){browserWindow.unmaximize();}
+							let factor = screen.getPrimaryDisplay().scaleFactor;
+							browserWindow.setSize(640/factor, 360/factor);
+						}
+					}
+				]
+			},
+			{
+				label: 'Always on top',
+				type: 'checkbox',
+				visible: true,
+				checked: browserWindow.isAlwaysOnTop(),
+				click: () => {
+					if (browserWindow.isAlwaysOnTop()) {
+						browserWindow.setAlwaysOnTop(false);
+						browserWindow.setVisibleOnAllWorkspaces(false);
+					} else {
+						browserWindow.setAlwaysOnTop(true, "floating", 1);
+						browserWindow.setVisibleOnAllWorkspaces(true);
+					}
+
 				}
 			},
 			{
@@ -140,34 +230,7 @@ contextMenu({
 				// Only show it when right-clicking text
 				visible: true,
 				click: () => {
-					browserWindow.destroy();
-				}
-			},
-			{
-				label: 'Resize to 1920x1080',
-				// Only show it when right-clicking text
-				visible: true,
-				click: () => {
-					let factor = screen.getPrimaryDisplay().scaleFactor;
-					browserWindow.setSize(1920/factor, 1080/factor);
-				}
-			},
-			{
-				label: 'Resize to 1280x720',
-				// Only show it when right-clicking text
-				visible: true,
-				click: () => {
-					let factor = screen.getPrimaryDisplay().scaleFactor;
-					browserWindow.setSize(1280/factor, 720/factor);
-				}
-			},
-			{
-				label: 'Resize to 640x360',
-				// Only show it when right-clicking text
-				visible: true,
-				click: () => {
-					let factor = screen.getPrimaryDisplay().scaleFactor;
-					browserWindow.setSize(640/factor, 360/factor);
+					browserWindow.destroy();	   
 				}
 			}
 		]
