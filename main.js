@@ -11,7 +11,7 @@ const path = require('path')
 const contextMenu = require('electron-context-menu');
 var { argv } = require("yargs")
   .scriptName("area")
-  .usage("Usage: $0 -w num -h num -w string")
+  .usage("Usage: $0 -w num -h num -w string -t string")
   .example(
     "$0 -w 1280 -h 720 -u https://s10.watch/xxxx-xxx-xxxx-xxxx",
     "Loads the stream with ID xxxx into a window sized 1280x720"
@@ -160,7 +160,7 @@ contextMenu({
 				// Only show it when right-clicking text
 				visible: true,
 				click: () => {
-					createWindow("https://obs.ninja/electron");
+					createWindow(`https://s10.watch/home`);
 				}
 			},
 			{
