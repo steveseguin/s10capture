@@ -1,3 +1,5 @@
+update: I'm only supporting Electron Capture at the moment, so no more support for S10.Capture.  Electron capture works the same though, and can be found here: https://github.com/steveseguin/electroncapture
+
 # S10 Capture app
 
 This free Windows/macOS app is designed to help make "Screen Capturing" of live videos using applications like OBS easier and more reliable. Use it for adding custom overlays to Stage TEN streams (like closed-captions) or for recording ISO (isolated) feeds of S10 participant using OBS or other video recording software.
